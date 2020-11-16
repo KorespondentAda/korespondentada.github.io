@@ -4,42 +4,36 @@
 		<title>Да уже сайт учебной группы</title>
 		<script type="text/javascript" src="https://vk.com/js/api/openapi.js?168"></script>
 	</head>
-	<body background="grey">
+	<body>
 		<h1><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=PL-vBdFGg1ODmNQx4LJVJNhmceohGEwXKO&index=9&t=0s">Ассалам Уалейкум</a></h1>
-
+		
+		<p><b>Ввести число</b><br><input id="numInput" type="text", size="40"></p>
 		<!-- VK Widget -->
 		<div id="vk_auth"></div>
 
-		<!-- URL Tags
-		<script type="text/javascript">
-			var qd = {};
-			if (location.search)
-				location.search
-					.substr(1)
-					.split("&")
-					.forEach(function(item) {
-									var s = item.split("="), 
-										k = s[0], 
-										v = s[1] && decodeURIComponent(s[1]); 
-									(qd[k] = qd[k] || []).push(v)
-								})
-		</script>
-		URL Tags -->
 		<script type="text/javascript">
 			VK.init({apiId: 7664434});
 		</script>
 		<script type="text/javascript">
-			var authData;
+			var authData, uid, ufName, ulName, uphoto, uphoto_rec, uhash;
+			var editValue;
 			authData = VK.Widgets.Auth("vk_auth",
 							{"onAuth":function(params){
 								// TODO init user
 								console.log("onAuth Started");
-								console.log("uid: " + params.uid);
-								console.log("first_name: " + params.first_name);
-								console.log("last_name: " + params.last_name);
-								console.log("photo: " + params.photo);
-								console.log("photo_rec: " + params.photo_rec);
-								console.log("hash: " + params.hash);
+								editValue = document.getElementById("numInput").value;
+								console.log("Input value: " + editValue);
+			uid=params.uid; ufName=params.first_name; ulName=params.last_name; uphoto=params.photo; uphoto_rec=params.photo_rec; uhash=params.hash;
+								console.log("uid: " + uid);
+								console.log("first_name: " + ufName);
+								console.log("last_name: " + ulName);
+								console.log("photo: " + uphoto);
+								console.log("photo_rec: " + uphoto_rec);
+								console.log("hash: " + uhash);
+								alert("Привет, " + ufName + " " + ulName);
+								console.log("Testing API call");
+								console.log("User variable 'boxes' setting returned ", + VK.Api.call('storage.set', {v:"5.126", key:"boxes", value:editValue, user_id:uid}));
+								console.log("'boxes' value: ", VK.Api.call('storage.get', {v:"5.126", key:"boxes", user_id:uid}));
 								//if (userOur)
 								//	document.location.href = "wrongAuth.html";
 							}});
