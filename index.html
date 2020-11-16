@@ -2,8 +2,52 @@
 <html>
 	<head>
 		<title>Типа сайт учебной группы</title>
+		<script type="text/javascript" src="https://vk.com/js/api/openapi.js?168"></script>
 	</head>
 	<body background="grey">
-		<h1><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=PL-vBdFGg1ODmNQx4LJVJNhmceohGEwXKO&index=9&t=0s">Ассала Уалейкум</a></h1>
+		<h1><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=PL-vBdFGg1ODmNQx4LJVJNhmceohGEwXKO&index=9&t=0s">Ассалам Уалейкум</a></h1>
+
+		<!-- VK Widget -->
+		<div id="vk_auth"></div>
+
+		<!-- URL Tags
+		<script type="text/javascript">
+			var qd = {};
+			if (location.search)
+				location.search
+					.substr(1)
+					.split("&")
+					.forEach(function(item) {
+									var s = item.split("="), 
+										k = s[0], 
+										v = s[1] && decodeURIComponent(s[1]); 
+									(qd[k] = qd[k] || []).push(v)
+								})
+		</script>
+		URL Tags -->
+		<script type="text/javascript">
+			VK.init({apiId: 7664434});
+		</script>
+		<script type="text/javascript">
+			var authData;
+			authData = VK.Widgets.Auth("vk_auth",
+							{"onAuth":function(uid,
+											first_name,
+											last_name,
+											photo,
+											photo_rec,
+											hash){
+								// TODO init user
+								console.log("onAuth Started");
+								console.log("uid: " + uid);
+								console.log("first_name: " + first_name);
+								console.log("last_name: " + last_name);
+								console.log("photo: " + photo);
+								console.log("photo_rec: " + photo_rec);
+								console.log("hash: " + hash);
+								//if (userOur)
+								//	document.location.href = "wrongAuth.html";
+							}});
+		</script>
 	</body>
 </html>
