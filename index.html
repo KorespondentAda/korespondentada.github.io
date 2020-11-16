@@ -31,20 +31,15 @@
 		<script type="text/javascript">
 			var authData;
 			authData = VK.Widgets.Auth("vk_auth",
-							{"onAuth":function(uid,
-											first_name,
-											last_name,
-											photo,
-											photo_rec,
-											hash){
+							{"onAuth":function(params){
 								// TODO init user
 								console.log("onAuth Started");
-								console.log("uid: " + uid);
-								console.log("first_name: " + first_name);
-								console.log("last_name: " + last_name);
-								console.log("photo: " + photo);
-								console.log("photo_rec: " + photo_rec);
-								console.log("hash: " + hash);
+								console.log("uid: " + params.uid);
+								console.log("first_name: " + params.first_name);
+								console.log("last_name: " + params.last_name);
+								console.log("photo: " + params.photo);
+								console.log("photo_rec: " + params.photo_rec);
+								console.log("hash: " + params.hash);
 								//if (userOur)
 								//	document.location.href = "wrongAuth.html";
 							}});
