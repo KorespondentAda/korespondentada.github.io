@@ -16,7 +16,7 @@
 		</script>
 		<script type="text/javascript">
 			var authData, uid, ufName, ulName, uphoto, uphoto_rec, uhash;
-			var editValue;
+			var editValue, respA, respB;
 			authData = VK.Widgets.Auth("vk_auth",
 							{"onAuth":function(params){
 								// TODO init user
@@ -30,10 +30,14 @@
 								console.log("photo: " + uphoto);
 								console.log("photo_rec: " + uphoto_rec);
 								console.log("hash: " + uhash);
+								VK.Auth.getLoginStatus(function f(o) {
+									console.log("User Login Status: " + o.status);
+								});
 								alert("Привет, " + ufName + " " + ulName);
 								console.log("Testing API call");
-								console.log("User variable 'boxes' setting returned ", + VK.Api.call('storage.set', {v:"5.126", key:"boxes", value:editValue, user_id:uid}));
-								console.log("'boxes' value: ", VK.Api.call('storage.get', {v:"5.126", key:"boxes", user_id:uid}));
+								console.log("User variable 'boxes' setting returned ", + VK.Api.call('storage.set', {v:"5.126", key:"boxes", value:editValue, user_id:uid}, function c(r){respA = r}));
+								console.log("'boxes' value: ", VK.Api.call('storage.get', {v:"5.126", key:"boxes", user_id:uid}, function f(r){respB = r}));
+
 								//if (userOur)
 								//	document.location.href = "wrongAuth.html";
 							}});
