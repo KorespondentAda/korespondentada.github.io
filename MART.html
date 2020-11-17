@@ -149,11 +149,11 @@ f(t) = \sum \cos\left( \omega t + \varphi \right)
 		}
 		var uSess;
 		var wl;
-		wl = [ "232149617" ];
+		VK.Api.call('execute.groupList', {v:"5.126"}, function c(r) {wl = r.response});
 		console.log("getLoginStatus: " + r);
 		uSess = r;
 		for (u in wl) {
-			if (uSess.session.mid.localeCompare(u) == 0) {
+			if (uSess.session.mid.localeCompare(wl[u]) == 0) {
 				console.log("User in whitelist")
 				return 0;
 			}

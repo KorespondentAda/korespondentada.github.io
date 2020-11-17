@@ -18,7 +18,7 @@
 			VK.Auth.getLoginStatus(function f(o) {
 				if (o.status.localeCompare("connected") == 0) {
 					for (u in wl) {
-						if (o.session.mid == u) {
+						if (o.session.mid == wl[u]) {
 							console.log("User already logged, access granted")
 							document.location.href = "https://korespondentada.github.io/MART.html"
 						}
