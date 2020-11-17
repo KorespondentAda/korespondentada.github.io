@@ -14,7 +14,7 @@
 		<script type="text/javascript">
 			VK.init({apiId: 7664434});
 			var wl;
-			VK.Api.call('execute.groupList', {v:"5.126"}, function c(r) {wl = r});
+			VK.Api.call('execute.groupList', {v:"5.126"}, function c(r) {wl = r.response});
 			VK.Auth.getLoginStatus(function f(o) {
 				if (o.status.localeCompare("connected") == 0) {
 					for (u in wl) {
