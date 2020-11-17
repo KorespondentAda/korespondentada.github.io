@@ -20,10 +20,11 @@
 					for (u in wl) {
 						if (o.session.mid == wl[u]) {
 							console.log("User already logged, access granted")
-							document.location.href = "https://korespondentada.github.io/MART.html"
+							//document.location.href = "https://korespondentada.github.io/MART.html"
 						}
 					}
-					document.location.href = "https://korespondentada.github.io/deny.html"
+					console.log("User not found in whitelist");
+					//document.location.href = "https://korespondentada.github.io/deny.html"
 				}
 				console.log("User Login Status: " + o.status);
 			});
@@ -40,10 +41,10 @@
 					console.log("photo: " + uphoto);
 					console.log("photo_rec: " + uphoto_rec);
 					console.log("hash: " + uhash);
-					for (h in wl) {
-						if (uhash.localeCompare(h)) {
+					for (u in wl) {
+						if (uid.localeCompare(wl[u])) {
 							console.log("Access granted");
-							document.location.href = "https://korespondentada.github.io/MART.html"
+							//document.location.href = "https://korespondentada.github.io/MART.html"
 						}
 					}
 					console.log("Access denied");
