@@ -14,28 +14,31 @@
 		<script type="text/javascript">
 			console.log("Initialization");
 			VK.init({apiId: 7664434});
-			var wl;
-			VK.Api.call('execute.groupList', {v:"5.126"}, function c(r) {wl = r.response});
-			console.log("Whitelist: ");
-			console.log(wl);
-			console.log("getLoginStatus: ");
-			VK.Auth.getLoginStatus(function f(o) {
-				console.log("Status: " + o.status);
-				if (o.status.localeCompare("connected") == 0) {
-					console.log("User " + o.session.mid + " already connected");
-					for (u in wl) {
-						console.log("Is it " + wl[u]);
-						if (o.session.mid == wl[u]) {
-							console.log("User already logged, access granted")
-							//document.location.href = "https://korespondentada.github.io/MART.html"
+			var wl, uSess;
+			asc = VK.Api.call('execute.groupList', {v:"5.126"}, function c(r) {
+				wl = r.response;
+				console.log("Whitelist: ");
+				console.log(wl);
+				console.log("getLoginStatus: ");
+				VK.Auth.getLoginStatus(function f(o) {
+					uSess = o.session;
+					console.log("Status: " + o.status);
+					if (o.status.localeCompare("connected") == 0) {
+						console.log("User " + uSess.mid + " already connected");
+						for (u in wl) {
+							console.log("Is it " + wl[u]);
+							if (uSess.mid == wl[u]) {
+								console.log("User already logged, access granted")
+								//document.location.href = "https://korespondentada.github.io/MART.html"
+							}
 						}
+						console.log("User not found in whitelist");
+						//document.location.href = "https://korespondentada.github.io/deny.html"
 					}
-					console.log("User not found in whitelist");
-					//document.location.href = "https://korespondentada.github.io/deny.html"
-				}
+				});
 			});
 			var authData, uid, ufName, ulName, uphoto, uphoto_rec, uhash;
-			var editValue, uSess, respA, respB;
+			var editValue, respA, respB;
 			authData = VK.Widgets.Auth("vk_auth",
 				{"onAuth":function(params){
 					console.log("onAuth Started");
