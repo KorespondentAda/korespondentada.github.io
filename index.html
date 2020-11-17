@@ -2,40 +2,52 @@
 <html>
 	<head>
 		<title>Да уже сайт учебной группы</title>
+		<link rel="Stylesheet" type="text/css" href="style.css">
 		<script type="text/javascript" src="https://vk.com/js/api/openapi.js?168"></script>
 	</head>
 	<body>
-		<h1><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=PL-vBdFGg1ODmNQx4LJVJNhmceohGEwXKO&index=9&t=0s">Ассалам Уалейкум</a></h1>
+		<h1 class="header"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=PL-vBdFGg1ODmNQx4LJVJNhmceohGEwXKO&index=9&t=0s">Ассалам Уалейкум</a></h1>
 		
-		<p><b>Ввести число</b><br><input id="numInput" type="text", size="40"></p>
 		<!-- VK Widget -->
 		<div id="vk_auth"></div>
 
 		<script type="text/javascript">
 			VK.init({apiId: 7664434});
+			var wl;
+			VK.Api.call('execute.groupList', {v:"5.126"}, function c(r) {wl = r});
+			VK.Auth.getLoginStatus(function f(o) {
+				if (o.status.localeCompare("connected") == 0) {
+					for (u in wl) {
+						if (o.session.mid == u) {
+							console.log("User already logged, access granted")
+							document.location.href = "https://korespondentada.github.io/MART.html"
+						}
+					}
+					document.location.href = "https://korespondentada.github.io/deny.html"
+				}
+				console.log("User Login Status: " + o.status);
+			});
 			var authData, uid, ufName, ulName, uphoto, uphoto_rec, uhash;
 			var editValue, uSess, respA, respB;
 			authData = VK.Widgets.Auth("vk_auth",
-							{"onAuth":function(params){
-								// TODO init user
-								console.log("onAuth Started");
-								editValue = document.getElementById("numInput").value;
-								console.log("Input value: " + editValue);
-			uid=params.uid; ufName=params.first_name; ulName=params.last_name; uphoto=params.photo; uphoto_rec=params.photo_rec; uhash=params.hash;
-								console.log("uid: " + uid);
-								console.log("first_name: " + ufName);
-								console.log("last_name: " + ulName);
-								console.log("photo: " + uphoto);
-								console.log("photo_rec: " + uphoto_rec);
-								console.log("hash: " + uhash);
-								VK.Auth.getLoginStatus(function f(o) {
-									uSess = o.session;
-									console.log("User Login Status: " + o.status);
-								});
-								console.log("Testing API call");
-								console.log("User variable 'boxes' setting returned ", + VK.Api.call('storage.set', {v:"5.126", key:"boxes", value:editValue}, function c(r){respA = r}));
-								console.log("'boxes' value: ", VK.Api.call('storage.get', {v:"5.126", key:"boxes"}, function c(r){respB = r}));
-							}});
+				{"onAuth":function(params){
+					console.log("onAuth Started");
+					console.log("Input value: " + editValue);
+					uid=params.uid; ufName=params.first_name; ulName=params.last_name; uphoto=params.photo; uphoto_rec=params.photo_rec; uhash=params.hash;
+					console.log("uid: " + uid);
+					console.log("first_name: " + ufName);
+					console.log("last_name: " + ulName);
+					console.log("photo: " + uphoto);
+					console.log("photo_rec: " + uphoto_rec);
+					console.log("hash: " + uhash);
+					for (h in wl) {
+						if (uhash.localeCompare(h)) {
+							console.log("Access granted");
+							document.location.href = "https://korespondentada.github.io/MART.html"
+						}
+					}
+					console.log("Access denied");
+				}});
 		</script>
 	</body>
 </html>
