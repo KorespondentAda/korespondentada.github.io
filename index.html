@@ -28,12 +28,14 @@
 						for (u in wl) {
 							console.log("Is it " + wl[u]);
 							if (uSess.mid == wl[u]) {
-								console.log("User already logged, access granted")
-								document.location.href = "https://korespondentada.github.io/MART.html"
+								console.log("User already logged, access granted");
+								document.location.href = "https://korespondentada.github.io/MART.html";
+								return;
 							}
 						}
 						console.log("User not found in whitelist");
-						document.location.href = "https://korespondentada.github.io/deny.html"
+						document.location.href = "https://korespondentada.github.io/deny.html";
+						return;
 					}
 				});
 			});
@@ -53,10 +55,12 @@
 					for (u in wl) {
 						if (uid == wl[u]) {
 							console.log("Access granted");
-							document.location.href = "https://korespondentada.github.io/MART.html"
+							document.location.href = "https://korespondentada.github.io/MART.html";
+							return;
 						}
 					}
 					console.log("Access denied");
+					document.location.href = "https://korespondentada.github.io/deny.html";
 				}});
 		</script>
 	</body>

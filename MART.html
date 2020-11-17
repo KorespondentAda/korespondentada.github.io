@@ -146,20 +146,21 @@ f(t) = \sum \cos\left( \omega t + \varphi \right)
 		if (r.status.localeCompare("connected") != 0) {
 			console.log("User not authorized")
 			document.location.href = "https://korespondentada.github.io/index.html";
+			return;
 		}
 		var uSess;
 		var wl;
 		VK.Api.call('execute.groupList', {v:"5.126"}, function c(r) {
-			wl = r.response
+			wl = r.response;
 			console.log("getLoginStatus: " + r);
 			uSess = r;
 			for (u in wl) {
 				if (uSess.session.mid.localeCompare(wl[u]) == 0) {
-					console.log("User in whitelist")
+					console.log("User in whitelist");
 					return;
 				}
 			}
-			console.log("User not in whitelist")
+			console.log("User not in whitelist");
 			document.location.href = "https://korespondentada.github.io/deny.html";
 		});
 	});
